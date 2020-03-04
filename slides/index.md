@@ -13,10 +13,10 @@
 
 - Set up dev environment
 - Develop
-  - GuessWhere Class
+  - Settings Class
   - Simple Widget
-  - GuessWhere Widget
-- Enhance GuessWhere Widget
+  - SettingsPanel Widget
+- Enhance SettingsPanel Widget
 
 ---
 
@@ -99,7 +99,7 @@ const shorthand = { person };
 # Demo Recap: Dev Environment
 
 - Installed TypeScript + JS API typings
-- Built mapping application
+- Built simple mapping application
 
 ---
 
@@ -128,21 +128,11 @@ me.watch("age", singHappyBirthday);
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo: [GuessWhere Class](../demos/2-custom-class/)
+# Demo: [Settings Class](../demos/2-custom-class/)
 
 ```ts
-interface GuessWhere extends Accessor {
-  view: MapView | SceneView;
-  readonly choices: Choice[];
-  readonly points: number;
-  start(): void;
-  choose(choice: Choice): boolean;
-  end(): void;
-}
-
-interface Choice {
-  name: string;
-  feature: Graphic;
+interface Settings extends Accessor {
+  // tbd 🚧
 }
 ```
 
@@ -150,9 +140,9 @@ interface Choice {
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo Recap: GuessWhere Class
+# Demo Recap: Settings Class
 
-- Implemented `GuessWhere`
+- Implemented `Settings`
   - Extended `esri/core/Accessor`
   - Created properties with `@property`
   - Typed constructor arguments
@@ -267,7 +257,7 @@ Develop a simple widget
 
 # ViewModels
 
-- "GuessWhere" class example
+- "Settings" class example
 - Extend `esri/core/Accessor`
 - Provide APIs to support View
 - Focus on business logic
@@ -287,32 +277,21 @@ Develop a simple widget
 
 ---
 
-# Lets create `GuessWhere` Widget
+# Lets create `Settings` Widget
 
 [![Completed Demo](img/completed-demo.png)](../demos/completed/)
 
-Simple `GuessWhere` game widget
+`SettingsPanel` widget
 
 ---
 
 # Demo VM Interface
 
 <pre><code class="ts" data-trim data-noescape>
-interface GuessWhereViewModel extends Accessor {
-  view: MapView | SceneView;
-  <mark>readonly state: "splash" | "playing" | "game-over";</mark>
-  readonly choices: Choice[];
-  readonly points: number;
-  start(): void;
-  choose(choice: Choice): boolean;
-  end(): void;
+interface SettingsViewModel extends Accessor {
+  // tbd 🚧
 }
-
-interface Choice {
-  name: string;
-  feature: Graphic;
-}
-	</code></pre>
+</code></pre>
 </section>
 
 ---
@@ -320,9 +299,8 @@ interface Choice {
 # Demo: View Interface
 
 ```ts
-interface GuessWhere extends Widget {
-  view: MapView | SceneView; // alias of `viewModel.view` property
-  viewModel: GuessWhereViewModel;
+interface Settings extends Widget {
+  // tbd 🚧
 }
 ```
 
@@ -332,12 +310,12 @@ interface GuessWhere extends Widget {
 
 # Demo: [Updated View](../demos/4-updated-view/)
 
-- Use `GuessWhere` class as `GuessWhereViewModel`
+- Use `Settings` class as `SettingsViewModel`
   - Add a state property
-- Create `GuessWhere` view
+- Create `Settings` view
   - Alias VM properties
   - Create BEM classes object
-  - Render menu, HUD, round
+  - Render sections
 
 [Updated View](../demos/4-updated-view/) | [ViewModel Test Page](../demos/4-updated-view/vm-test.html)
 
@@ -369,9 +347,9 @@ interface GuessWhere extends Widget {
 # Final Recap
 
 - Set up dev environment
-- Wrote `GuessWhere` class
-- Developed a `GuessWhere` Widget
-- Enhanced `GuessWhere` Widget
+- Wrote `Settings` class
+- Developed a `SettingsPanel` Widget
+- Enhanced `SettingsPanel` Widget
 - Went further
 
 ---
@@ -381,9 +359,16 @@ interface GuessWhere extends Widget {
 - [Implementing Accessor](https://developers.arcgis.com/javascript/latest/guide/implementing-accessor/index.html)
 - [Setting up TypeScript](https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html)
 - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
-- [JavaScript API SDK](https://developers.arcgis.com/javascript/)
-- [Styling](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
+- [Styling](https://developers.arcgis.com/javascript/latest/guide/styling/)
+- [ArcGIS API for JavaScript - next](https://github.com/Esri/feedback-js-api-next)
 - [Widget Patterns](https://github.com/jcfranco/4x-widget-patterns)
+
+---
+
+## You might also be interested in...
+
+- [Building Web Apps Using Your GeoJSON Data](https://developersummit2020.schedule.esri.com/schedule/172637542)
+- [ArcGIS API for JavaScript: Practical Guide for Building a 3D Web App From 2D Data](https://developersummit2020.schedule.esri.com/schedule/1715519110)
 
 ---
 
@@ -396,7 +381,7 @@ interface GuessWhere extends Widget {
 
 > 🤔 Where can I find the slides/source?
 
-👉 [bit.ly/buildwidgetsds19](http://bit.ly/buildwidgetsds19) 👈
+👉 [bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20) 👈
 
 ---
 
