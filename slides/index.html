@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="../node_modules/esri-reveal.js-templates/css/reveal.css">
   <link rel="stylesheet" href="../node_modules/esri-reveal.js-templates/css/theme/dev-summit-2020.css">
+  <link rel="stylesheet" href="../css/slides.css">
 
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="../node_modules/esri-reveal.js-templates/lib/css/zenburn.css">
@@ -19,7 +20,7 @@
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../node_modules/esri-reveal.js-templates/css/print/pdf.css' : '../node_modules/esri-reveal.js-templates/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
 </head>
@@ -36,7 +37,6 @@
     </div>
   </div>
 
-  <script src="../node_modules/esri-reveal.js-templates/lib/js/head.min.js"></script>
   <script src="../node_modules/esri-reveal.js-templates/js/reveal.js"></script>
 
   <script>
