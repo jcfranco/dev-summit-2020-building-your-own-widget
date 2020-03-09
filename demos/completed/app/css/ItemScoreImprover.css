@@ -1,0 +1,33 @@
+.item-score-improver {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-score-improver__score-bar {
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.item-score-improver__score-bar-background {
+  border: solid #0E5C8C;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  z-index: 0;
+}
+
+.item-score-improver__score-bar-fill {
+  position: absolute;
+  border-color: transparent;
+  height: 50px;
+  transition: width ease-in 250ms;
+}
+
+.item-score-improver__thumbnail {
+  height: 133px;
+  width: 200px;
+  display: block;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.28);
+}

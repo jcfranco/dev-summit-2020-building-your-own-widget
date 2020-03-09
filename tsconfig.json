@@ -2,9 +2,11 @@
   "compilerOptions": {
     "module": "amd",
     "noImplicitAny": true,
+    "noEmitHelpers": true,
     "sourceMap": true,
     "jsx": "react",
     "jsxFactory": "tsx",
+    "lib": [ "dom", "es2015", "es2015.promise", "scripthost" ],
     "target": "es5",
     "experimentalDecorators": true,
     "preserveConstEnums": true,
