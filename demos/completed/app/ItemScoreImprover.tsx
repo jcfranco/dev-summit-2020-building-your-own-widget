@@ -3,10 +3,10 @@
 
 import Widget = require("esri/widgets/Widget");
 import ItemScoreImproverViewModel = require("./ItemScoreImproverViewModel");
-import WidgetProperties = __esri.WidgetProperties;
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 import { renderable, tsx } from "esri/widgets/support/widget";
 import { ItemScoreImproverViewModelProperties } from "./interfaces";
+import WidgetProperties = __esri.WidgetProperties;
 
 interface ItemScoreImproverProperties
   extends ItemScoreImproverViewModelProperties,
@@ -99,6 +99,12 @@ class ItemScoreImprover extends declared(Widget) {
         }
       })
     );
+  }
+
+  destroy(): void {
+    if (this._thumbnailBlobUrl) {
+      URL.revokeObjectURL(this._thumbnailBlobUrl);
+    }
   }
 
   //--------------------------------------------------------------------------

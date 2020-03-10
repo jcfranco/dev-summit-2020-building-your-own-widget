@@ -124,6 +124,11 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 }
             }));
         };
+        ItemScoreImprover.prototype.destroy = function () {
+            if (this._thumbnailBlobUrl) {
+                URL.revokeObjectURL(this._thumbnailBlobUrl);
+            }
+        };
         //--------------------------------------------------------------------------
         //
         //  Public Methods
