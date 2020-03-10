@@ -372,14 +372,7 @@ interface Settings extends Widget {
 
 ---
 
-<!-- **please rate us** -->
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-rating.png" data-background-size="cover" -->
-
----
-
-# Question Time
-
-> 🤔 Where can I find the slides/source?
+# 🤔 Where can I find the slides/source?
 
 👉 [bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20) 👈
 
