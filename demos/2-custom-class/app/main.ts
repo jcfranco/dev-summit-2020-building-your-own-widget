@@ -1,6 +1,6 @@
 import { addProxyRule } from "esri/core/urlUtils";
 
-import ItemScoreImprover = require("./ItemScoreImprover");
+import ItemScoreImproverViewModel = require("./ItemScoreImproverViewModel");
 
 //----------------
 //  item setup
@@ -22,11 +22,10 @@ if (location.host === "localhost") {
 }
 
 //----------------
-//  widget setup
+//  class setup
 //----------------
 
-const improver = new ItemScoreImprover({ itemId, container: "widgetDiv" });
+const improver = new ItemScoreImproverViewModel({ itemId });
 
 // add to window for demo
 (window as any).improver = improver;
-

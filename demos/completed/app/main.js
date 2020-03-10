@@ -19,6 +19,8 @@ define(["require", "exports", "esri/core/urlUtils", "./ItemScoreImprover"], func
     //----------------
     //  widget setup
     //----------------
-    var widget = new ItemScoreImprover({ itemId: itemId, container: "widgetDiv" });
+    var improver = new ItemScoreImprover({ itemId: itemId, container: "widgetDiv" });
+    // add to window for demo
+    window.improver = improver;
 });
 //# sourceMappingURL=main.js.map
