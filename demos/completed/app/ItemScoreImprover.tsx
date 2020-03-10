@@ -153,9 +153,7 @@ class ItemScoreImprover extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    const {
-      viewModel: { state }
-    } = this;
+    const { state } = this.viewModel;
 
     return (
       <div class={this.classes(CSS.esriWidget, CSS.root, CSS.paddingLeft1, CSS.paddingRight1)}>
@@ -175,8 +173,9 @@ class ItemScoreImprover extends declared(Widget) {
         <label class={CSS.inputGroupInput}>
           <input
             class={CSS.inputGroupInput}
+            data-item-prop="itemId"
             placeholder={i18n.itemIdPlaceholder}
-            onchange={this._handleInputChange}
+            onchange={this._handleSimpleValueChange}
             onkeyup={this._handleInputKeyDown}
           />
         </label>
@@ -262,9 +261,7 @@ class ItemScoreImprover extends declared(Widget) {
   }
 
   protected renderScore() {
-    const {
-      viewModel: { score }
-    } = this;
+    const { score } = this.viewModel;
 
     return (
       <div>
@@ -287,11 +284,7 @@ class ItemScoreImprover extends declared(Widget) {
   }
 
   protected renderFirstSuggestion() {
-    const {
-      viewModel: { suggestions }
-    } = this;
-
-    const firstSuggestion = suggestions[0];
+    const [firstSuggestion] = this.viewModel.suggestions;
 
     return firstSuggestion ? (
       <div class={this.classes(CSS.leader1, CSS.alert, CSS.alertYellow, CSS.isActive)}>
@@ -311,29 +304,21 @@ class ItemScoreImprover extends declared(Widget) {
   //
   //--------------------------------------------------------------------------
 
-  protected _handleInputChange = (event: Event): void => {
-    this.viewModel.itemId = (event.currentTarget as HTMLInputElement).value;
+  protected _handleSimpleValueChange = (event: Event): void => {
+    const input = event.currentTarget as HTMLInputElement;
+    const propName = input.getAttribute("data-item-prop");
+    this.viewModel[propName] = input.value;
   };
 
   protected _handleInputKeyDown = (event: KeyboardEvent): void => {
-    if (event.key !== "Enter") {
-      return;
+    if (event.key === "Enter") {
+      this.viewModel.load();
     }
-
-    this.viewModel.load();
   };
 
   protected _handleTagsChange = (event: Event): void => {
     const input = event.currentTarget as HTMLInputElement;
-
-    this.viewModel.tags = input.value.split(" ");
-  };
-
-  protected _handleSimpleValueChange = (event: Event): void => {
-    const input = event.currentTarget as HTMLInputElement;
-    const propName = input.getAttribute("data-item-prop");
-
-    this.viewModel[propName] = input.value;
+    this.viewModel.tags = input.value.split(" "); // note: tags are space-delimited
   };
 
   protected _handleThumbnailChange = (event: Event): void => {
@@ -347,12 +332,14 @@ class ItemScoreImprover extends declared(Widget) {
 
   protected _handleItemSave = (): void => {
     const save = this.viewModel.save();
-    this._activeSave = save;
 
+    // store active state to use in rendering
+    this._activeSave = save;
     save.then(() => (this._activeSave = null));
   };
 
   protected _handleFormSubmit = (event: Event): void => {
+    // prevent default page reload
     event.preventDefault();
   };
 

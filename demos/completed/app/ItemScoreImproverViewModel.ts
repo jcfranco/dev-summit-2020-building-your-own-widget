@@ -150,39 +150,37 @@ class ItemScoreImproverViewModel extends declared(Accessor) {
   //--------------------------------------------------------------------------
 
   async save(): Promise<void> {
-    if (!this.item) {
+    const { item, thumbnail } = this;
+
+    if (!item) {
       throw new EsriError(
         "item-score-reviewer::missing-item-id",
         "cannot save item data without loading item data first"
       );
     }
 
-    const data = this.item.toJSON();
-    const item = await this.item.update({ data });
-    this.item = item;
+    const data = item.toJSON();
+    this.item = await item.update({ data });
 
-    await this.item.updateThumbnail({
-      filename: "item-thumbnail",
-      thumbnail: this.thumbnail
-    });
+    await item.updateThumbnail({ filename: "item-thumbnail", thumbnail });
 
     this._set("suggestions", this._reviewItem());
   }
 
   async load(): Promise<void> {
-    if (!this.itemId) {
+    const { itemId, portal } = this;
+
+    if (!itemId) {
       throw new EsriError("item-score-reviewer::missing-item-id", "cannot load item data without item ID");
     }
 
-    this.item = new PortalItem({
-      portal: this.portal,
-      id: this.itemId
-    });
+    const item = new PortalItem({ id: itemId, portal });
+    this.item = item;
 
-    await this.item.load();
+    await item.load();
 
-    if (this.item.thumbnailUrl) {
-      const thumbnail = await request(this.item.thumbnailUrl, {
+    if (item.thumbnailUrl) {
+      const thumbnail = await request(item.thumbnailUrl, {
         responseType: "blob"
       }).then(({ data }) => data);
 

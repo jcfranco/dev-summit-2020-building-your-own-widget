@@ -16,7 +16,6 @@
   - Settings Class
   - Simple Widget
   - SettingsPanel Widget
-- Enhance SettingsPanel Widget
 
 ---
 
@@ -79,7 +78,7 @@ const shorthand = { person };
 
 # IDE Support
 
-- Visual Studio
+- Visual Studio Code
 - WebStorm
 - Sublime Text
 - and more!
@@ -104,6 +103,8 @@ const shorthand = { person };
 ---
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-4.png" data-background-size="cover" -->
+
+<!-- Matt -->
 
 # Creating a Class
 
@@ -349,7 +350,6 @@ interface Settings extends Widget {
 - Set up dev environment
 - Wrote `Settings` class
 - Developed a `SettingsPanel` Widget
-- Enhanced `SettingsPanel` Widget
 - Went further
 
 ---
@@ -377,5 +377,7 @@ interface Settings extends Widget {
 👉 [bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20) 👈
 
 ---
+
+![Esri](../node_modules/esri-reveal.js-templates/img/esri-science-logo-white.png)
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-esri.png" data-background-size="cover" -->

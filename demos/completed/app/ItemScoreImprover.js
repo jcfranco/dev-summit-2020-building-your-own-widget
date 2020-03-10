@@ -78,23 +78,19 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             //  Protected Methods
             //
             //--------------------------------------------------------------------------
-            _this._handleInputChange = function (event) {
-                _this.viewModel.itemId = event.currentTarget.value;
-            };
-            _this._handleInputKeyDown = function (event) {
-                if (event.key !== "Enter") {
-                    return;
-                }
-                _this.viewModel.load();
-            };
-            _this._handleTagsChange = function (event) {
-                var input = event.currentTarget;
-                _this.viewModel.tags = input.value.split(" ");
-            };
             _this._handleSimpleValueChange = function (event) {
                 var input = event.currentTarget;
                 var propName = input.getAttribute("data-item-prop");
                 _this.viewModel[propName] = input.value;
+            };
+            _this._handleInputKeyDown = function (event) {
+                if (event.key === "Enter") {
+                    _this.viewModel.load();
+                }
+            };
+            _this._handleTagsChange = function (event) {
+                var input = event.currentTarget;
+                _this.viewModel.tags = input.value.split(" "); // note: tags are space-delimited
             };
             _this._handleThumbnailChange = function (event) {
                 var input = event.currentTarget;
@@ -105,10 +101,12 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             };
             _this._handleItemSave = function () {
                 var save = _this.viewModel.save();
+                // store active state to use in rendering
                 _this._activeSave = save;
                 save.then(function () { return (_this._activeSave = null); });
             };
             _this._handleFormSubmit = function (event) {
+                // prevent default page reload
                 event.preventDefault();
             };
             return _this;
@@ -138,7 +136,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         ItemScoreImprover.prototype.renderItemLoader = function () {
             return (widget_1.tsx("div", { class: this.classes(CSS.leader1, CSS.inputGroup) },
                 widget_1.tsx("label", { class: CSS.inputGroupInput },
-                    widget_1.tsx("input", { class: CSS.inputGroupInput, placeholder: i18n.itemIdPlaceholder, onchange: this._handleInputChange, onkeyup: this._handleInputKeyDown })),
+                    widget_1.tsx("input", { class: CSS.inputGroupInput, "data-item-prop": "itemId", placeholder: i18n.itemIdPlaceholder, onchange: this._handleSimpleValueChange, onkeyup: this._handleInputKeyDown })),
                 widget_1.tsx("span", { class: CSS.inputGroupButton },
                     widget_1.tsx("button", { class: CSS.button, onclick: this._handleItemLoad }, i18n.load))));
         };
@@ -187,8 +185,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 this.renderFirstSuggestion()));
         };
         ItemScoreImprover.prototype.renderFirstSuggestion = function () {
-            var suggestions = this.viewModel.suggestions;
-            var firstSuggestion = suggestions[0];
+            var firstSuggestion = this.viewModel.suggestions[0];
             return firstSuggestion ? (widget_1.tsx("div", { class: this.classes(CSS.leader1, CSS.alert, CSS.alertYellow, CSS.isActive) },
                 widget_1.tsx("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 16 16", height: "16", width: "16" },
                     widget_1.tsx("path", { d: "M11.01 11.035a3.81 3.81 0 0 1 .135-.904 3.174 3.174 0 0 1 .426-.657 6.33 6.33 0 0 0 1.479-3.576 4.57 4.57 0 0 0-1.555-3.72 4.497 4.497 0 0 0-5.9-.075A4.557 4.557 0 0 0 3.95 5.897a6.33 6.33 0 0 0 1.48 3.577 3.15 3.15 0 0 1 .426.658 3.795 3.795 0 0 1 .134.903 4.948 4.948 0 0 0 .1.817c.013.059.036.095.051.148h-.312l.45 1.5-.365 1.215 1.487.967a2.02 2.02 0 0 0 2.2-.001l1.487-.966-.364-1.215.449-1.5h-.312c.015-.053.038-.09.051-.148a4.948 4.948 0 0 0 .1-.817zm-1.953 3.807a1.036 1.036 0 0 1-1.113 0l-.857-.557.235-.785-.15-.5h2.656l-.15.5.235.785zM9 12V9H8v3h-.79a1.018 1.018 0 0 1-.145-.365 3.897 3.897 0 0 1-.078-.66 4.702 4.702 0 0 0-.17-1.118 3.312 3.312 0 0 0-.586-.981 5.377 5.377 0 0 1-1.283-3.038 3.57 3.57 0 0 1 1.29-2.97 3.504 3.504 0 0 1 4.595.06 3.576 3.576 0 0 1 1.219 2.91 5.377 5.377 0 0 1-1.283 3.038 3.32 3.32 0 0 0-.585.98 4.716 4.716 0 0 0-.171 1.119 3.897 3.897 0 0 1-.078.66 1.138 1.138 0 0 1-.14.365zm1-4H7V7h3z" }),

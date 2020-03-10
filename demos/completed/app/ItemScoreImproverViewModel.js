@@ -50,24 +50,22 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //--------------------------------------------------------------------------
         ItemScoreImproverViewModel.prototype.save = function () {
             return __awaiter(this, void 0, void 0, function () {
-                var data, item;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
+                var _a, item, thumbnail, data, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
                         case 0:
-                            if (!this.item) {
+                            _a = this, item = _a.item, thumbnail = _a.thumbnail;
+                            if (!item) {
                                 throw new EsriError("item-score-reviewer::missing-item-id", "cannot save item data without loading item data first");
                             }
-                            data = this.item.toJSON();
-                            return [4 /*yield*/, this.item.update({ data: data })];
+                            data = item.toJSON();
+                            _b = this;
+                            return [4 /*yield*/, item.update({ data: data })];
                         case 1:
-                            item = _a.sent();
-                            this.item = item;
-                            return [4 /*yield*/, this.item.updateThumbnail({
-                                    filename: "item-thumbnail",
-                                    thumbnail: this.thumbnail
-                                })];
+                            _b.item = _c.sent();
+                            return [4 /*yield*/, item.updateThumbnail({ filename: "item-thumbnail", thumbnail: thumbnail })];
                         case 2:
-                            _a.sent();
+                            _c.sent();
                             this._set("suggestions", this._reviewItem());
                             return [2 /*return*/];
                     }
@@ -76,34 +74,33 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         ItemScoreImproverViewModel.prototype.load = function () {
             return __awaiter(this, void 0, void 0, function () {
-                var thumbnail;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
+                var _a, itemId, portal, item, thumbnail;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0:
-                            if (!this.itemId) {
+                            _a = this, itemId = _a.itemId, portal = _a.portal;
+                            if (!itemId) {
                                 throw new EsriError("item-score-reviewer::missing-item-id", "cannot load item data without item ID");
                             }
-                            this.item = new PortalItem({
-                                portal: this.portal,
-                                id: this.itemId
-                            });
-                            return [4 /*yield*/, this.item.load()];
+                            item = new PortalItem({ id: itemId, portal: portal });
+                            this.item = item;
+                            return [4 /*yield*/, item.load()];
                         case 1:
-                            _a.sent();
-                            if (!this.item.thumbnailUrl) return [3 /*break*/, 3];
-                            return [4 /*yield*/, request(this.item.thumbnailUrl, {
+                            _b.sent();
+                            if (!item.thumbnailUrl) return [3 /*break*/, 3];
+                            return [4 /*yield*/, request(item.thumbnailUrl, {
                                     responseType: "blob"
                                 }).then(function (_a) {
                                     var data = _a.data;
                                     return data;
                                 })];
                         case 2:
-                            thumbnail = _a.sent();
+                            thumbnail = _b.sent();
                             this.set("thumbnail", thumbnail);
                             return [3 /*break*/, 4];
                         case 3:
                             this.set("thumbnail", null);
-                            _a.label = 4;
+                            _b.label = 4;
                         case 4:
                             this._set("suggestions", this._reviewItem());
                             return [2 /*return*/];
