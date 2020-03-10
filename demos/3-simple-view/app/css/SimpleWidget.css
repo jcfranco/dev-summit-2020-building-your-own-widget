@@ -1,0 +1,12 @@
+.simple-widget {
+  background-color: rgba(255, 0, 0);
+  padding: 30px;
+  font-weight: bold;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.simple-widget--enabled {
+  background-color: rgba(0, 0, 255);
+}
