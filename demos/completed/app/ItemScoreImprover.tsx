@@ -89,22 +89,12 @@ class ItemScoreImprover extends declared(Widget) {
 
   postInitialize(): void {
     this.own(
-      this.watch("viewModel.thumbnail", (thumbnail) => {
-        if (this._thumbnailBlobUrl) {
-          URL.revokeObjectURL(this._thumbnailBlobUrl);
-        }
-
-        if (thumbnail) {
-          this._thumbnailBlobUrl = URL.createObjectURL(thumbnail);
-        }
-      })
+      this.watch("viewModel.thumbnail", (thumbnail) => this._updateThumbnailBlobUrl(thumbnail))
     );
   }
 
   destroy(): void {
-    if (this._thumbnailBlobUrl) {
-      URL.revokeObjectURL(this._thumbnailBlobUrl);
-    }
+    this._updateThumbnailBlobUrl(null);
   }
 
   //--------------------------------------------------------------------------
@@ -361,6 +351,16 @@ class ItemScoreImprover extends declared(Widget) {
   //  Private Methods
   //
   //--------------------------------------------------------------------------
+
+  private _updateThumbnailBlobUrl(thumbnail: Blob): void {
+    if (this._thumbnailBlobUrl) {
+      URL.revokeObjectURL(this._thumbnailBlobUrl);
+    }
+
+    if (thumbnail) {
+      this._thumbnailBlobUrl = URL.createObjectURL(thumbnail);
+    }
+  }
 
   private _getScoreColor(score: number): string {
     if (score > 80) {

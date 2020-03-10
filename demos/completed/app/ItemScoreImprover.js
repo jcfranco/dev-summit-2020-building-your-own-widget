@@ -115,19 +115,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         }
         ItemScoreImprover.prototype.postInitialize = function () {
             var _this = this;
-            this.own(this.watch("viewModel.thumbnail", function (thumbnail) {
-                if (_this._thumbnailBlobUrl) {
-                    URL.revokeObjectURL(_this._thumbnailBlobUrl);
-                }
-                if (thumbnail) {
-                    _this._thumbnailBlobUrl = URL.createObjectURL(thumbnail);
-                }
-            }));
+            this.own(this.watch("viewModel.thumbnail", function (thumbnail) { return _this._updateThumbnailBlobUrl(thumbnail); }));
         };
         ItemScoreImprover.prototype.destroy = function () {
-            if (this._thumbnailBlobUrl) {
-                URL.revokeObjectURL(this._thumbnailBlobUrl);
-            }
+            this._updateThumbnailBlobUrl(null);
         };
         //--------------------------------------------------------------------------
         //
@@ -206,6 +197,14 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //  Private Methods
         //
         //--------------------------------------------------------------------------
+        ItemScoreImprover.prototype._updateThumbnailBlobUrl = function (thumbnail) {
+            if (this._thumbnailBlobUrl) {
+                URL.revokeObjectURL(this._thumbnailBlobUrl);
+            }
+            if (thumbnail) {
+                this._thumbnailBlobUrl = URL.createObjectURL(thumbnail);
+            }
+        };
         ItemScoreImprover.prototype._getScoreColor = function (score) {
             if (score > 80) {
                 return "#0086D9";
