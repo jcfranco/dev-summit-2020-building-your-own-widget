@@ -161,10 +161,30 @@ class ItemScoreImprover extends declared(Widget) {
       <div class={this.classes(CSS.esriWidget, CSS.root, CSS.paddingLeft1, CSS.paddingRight1)}>
         {this.renderItemLoader()}
         {state === "ready"
-          ? this.renderItemInfo()
+          ? this.renderItemForm()
           : state === "loading"
           ? this.renderProgressBar()
           : null}
+      </div>
+    );
+  }
+
+  protected renderItemLoader() {
+    return (
+      <div class={this.classes(CSS.leader1, CSS.inputGroup)}>
+        <label class={CSS.inputGroupInput}>
+          <input
+            class={CSS.inputGroupInput}
+            placeholder={i18n.itemIdPlaceholder}
+            onchange={this._handleInputChange}
+            onkeyup={this._handleInputKeyDown}
+          />
+        </label>
+        <span class={CSS.inputGroupButton}>
+          <button class={CSS.button} onclick={this._handleItemLoad}>
+            {i18n.load}
+          </button>
+        </span>
       </div>
     );
   }
@@ -181,31 +201,16 @@ class ItemScoreImprover extends declared(Widget) {
     );
   }
 
-  protected renderItemInfo() {
+  protected renderItemForm() {
     const {
       _activeSave,
       _thumbnailBlobUrl,
-      viewModel: { score, title, summary, description, tags, termsOfUse }
+      viewModel: { title, summary, description, tags, termsOfUse }
     } = this;
 
     return (
       <div class={CSS.leader1} key="item-details">
-        <div>
-          <label>
-            <h1>{i18n.score}</h1>
-            <div class={CSS.scoreBar}>
-              <div
-                class={CSS.scoreBarFill}
-                styles={{
-                  backgroundColor: this._getScoreColor(score),
-                  width: `${score}%`
-                }}
-              />
-              <div class={CSS.scoreBarBackground} />
-            </div>
-          </label>
-          {this.renderFirstSuggestion()}
-        </div>
+        {this.renderScore()}
         <form class={this.classes(CSS.panel, CSS.leader1)} onsubmit={this._handleFormSubmit}>
           <label>
             {i18n.title}
@@ -256,6 +261,31 @@ class ItemScoreImprover extends declared(Widget) {
     );
   }
 
+  protected renderScore() {
+    const {
+      viewModel: { score }
+    } = this;
+
+    return (
+      <div>
+        <label>
+          <h1>{i18n.score}</h1>
+          <div class={CSS.scoreBar}>
+            <div
+              class={CSS.scoreBarFill}
+              styles={{
+                backgroundColor: this._getScoreColor(score),
+                width: `${score}%`
+              }}
+            />
+            <div class={CSS.scoreBarBackground} />
+          </div>
+        </label>
+        {this.renderFirstSuggestion()}
+      </div>
+    );
+  }
+
   protected renderFirstSuggestion() {
     const {
       viewModel: { suggestions }
@@ -273,26 +303,6 @@ class ItemScoreImprover extends declared(Widget) {
         {i18n.suggestions[firstSuggestion.property][firstSuggestion.type]}
       </div>
     ) : null;
-  }
-
-  protected renderItemLoader() {
-    return (
-      <div class={this.classes(CSS.leader1, CSS.inputGroup)}>
-        <label class={CSS.inputGroupInput}>
-          <input
-            class={CSS.inputGroupInput}
-            placeholder={i18n.itemIdPlaceholder}
-            onchange={this._handleInputChange}
-            onkeyup={this._handleInputKeyDown}
-          />
-        </label>
-        <span class={CSS.inputGroupButton}>
-          <button class={CSS.button} onclick={this._handleItemLoad}>
-            {i18n.load}
-          </button>
-        </span>
-      </div>
-    );
   }
 
   //--------------------------------------------------------------------------

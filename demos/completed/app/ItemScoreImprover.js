@@ -130,29 +130,27 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             return (widget_1.tsx("div", { class: this.classes(CSS.esriWidget, CSS.root, CSS.paddingLeft1, CSS.paddingRight1) },
                 this.renderItemLoader(),
                 state === "ready"
-                    ? this.renderItemInfo()
+                    ? this.renderItemForm()
                     : state === "loading"
                         ? this.renderProgressBar()
                         : null));
+        };
+        ItemScoreImprover.prototype.renderItemLoader = function () {
+            return (widget_1.tsx("div", { class: this.classes(CSS.leader1, CSS.inputGroup) },
+                widget_1.tsx("label", { class: CSS.inputGroupInput },
+                    widget_1.tsx("input", { class: CSS.inputGroupInput, placeholder: i18n.itemIdPlaceholder, onchange: this._handleInputChange, onkeyup: this._handleInputKeyDown })),
+                widget_1.tsx("span", { class: CSS.inputGroupButton },
+                    widget_1.tsx("button", { class: CSS.button, onclick: this._handleItemLoad }, i18n.load))));
         };
         ItemScoreImprover.prototype.renderProgressBar = function () {
             return (widget_1.tsx("div", { class: this.classes(CSS.loader, CSS.isActive, CSS.paddingLeader3, CSS.paddingTrailer3), key: "loader" },
                 widget_1.tsx("div", { class: CSS.loaderBars }),
                 widget_1.tsx("div", { class: CSS.loaderText }, i18n.loading)));
         };
-        ItemScoreImprover.prototype.renderItemInfo = function () {
-            var _a = this, _activeSave = _a._activeSave, _thumbnailBlobUrl = _a._thumbnailBlobUrl, _b = _a.viewModel, score = _b.score, title = _b.title, summary = _b.summary, description = _b.description, tags = _b.tags, termsOfUse = _b.termsOfUse;
+        ItemScoreImprover.prototype.renderItemForm = function () {
+            var _a = this, _activeSave = _a._activeSave, _thumbnailBlobUrl = _a._thumbnailBlobUrl, _b = _a.viewModel, title = _b.title, summary = _b.summary, description = _b.description, tags = _b.tags, termsOfUse = _b.termsOfUse;
             return (widget_1.tsx("div", { class: CSS.leader1, key: "item-details" },
-                widget_1.tsx("div", null,
-                    widget_1.tsx("label", null,
-                        widget_1.tsx("h1", null, i18n.score),
-                        widget_1.tsx("div", { class: CSS.scoreBar },
-                            widget_1.tsx("div", { class: CSS.scoreBarFill, styles: {
-                                    backgroundColor: this._getScoreColor(score),
-                                    width: score + "%"
-                                } }),
-                            widget_1.tsx("div", { class: CSS.scoreBarBackground }))),
-                    this.renderFirstSuggestion()),
+                this.renderScore(),
                 widget_1.tsx("form", { class: this.classes(CSS.panel, CSS.leader1), onsubmit: this._handleFormSubmit },
                     widget_1.tsx("label", null,
                         i18n.title,
@@ -175,6 +173,19 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                         widget_1.tsx("input", { onchange: this._handleThumbnailChange, accept: ".gif, .jpg, .jpeg, .png", type: "file" })),
                     widget_1.tsx("button", { class: CSS.button, disabled: _activeSave, onclick: this._handleItemSave }, i18n.save))));
         };
+        ItemScoreImprover.prototype.renderScore = function () {
+            var score = this.viewModel.score;
+            return (widget_1.tsx("div", null,
+                widget_1.tsx("label", null,
+                    widget_1.tsx("h1", null, i18n.score),
+                    widget_1.tsx("div", { class: CSS.scoreBar },
+                        widget_1.tsx("div", { class: CSS.scoreBarFill, styles: {
+                                backgroundColor: this._getScoreColor(score),
+                                width: score + "%"
+                            } }),
+                        widget_1.tsx("div", { class: CSS.scoreBarBackground }))),
+                this.renderFirstSuggestion()));
+        };
         ItemScoreImprover.prototype.renderFirstSuggestion = function () {
             var suggestions = this.viewModel.suggestions;
             var firstSuggestion = suggestions[0];
@@ -184,13 +195,6 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                     widget_1.tsx("path", { fill: "none", d: "M0 0h16v16H0z" })),
                 "\u00A0",
                 i18n.suggestions[firstSuggestion.property][firstSuggestion.type])) : null;
-        };
-        ItemScoreImprover.prototype.renderItemLoader = function () {
-            return (widget_1.tsx("div", { class: this.classes(CSS.leader1, CSS.inputGroup) },
-                widget_1.tsx("label", { class: CSS.inputGroupInput },
-                    widget_1.tsx("input", { class: CSS.inputGroupInput, placeholder: i18n.itemIdPlaceholder, onchange: this._handleInputChange, onkeyup: this._handleInputKeyDown })),
-                widget_1.tsx("span", { class: CSS.inputGroupButton },
-                    widget_1.tsx("button", { class: CSS.button, onclick: this._handleItemLoad }, i18n.load))));
         };
         //--------------------------------------------------------------------------
         //
