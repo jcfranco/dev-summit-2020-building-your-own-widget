@@ -22,10 +22,11 @@ if (location.host === "localhost") {
 }
 
 //----------------
-//  class setup
+//  widget setup
 //----------------
 
-const improver = new ItemScoreImprover({ itemId });
+const improver = new ItemScoreImprover({ itemId, container: "widgetDiv" });
 
 // add to window for demo
 (window as any).improver = improver;
+
