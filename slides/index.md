@@ -347,19 +347,8 @@ Develop a simple widget
 
 ```ts
 interface ItemScoreImprover extends Accessor {
-  portal: Portal;
-  itemId: string; 
-  readonly suggestions: { name: string; type: "add" | "enhance"; }[];
-  
-  title: string;
-  summary: string;
-  description: string;
-  tags: string;
-  termsOfUse: string;
-  thumbnail: string;
-
-  load(): Promise<void>;
-  save(): Promise<void>;
+  // ✨ new ✨
+  state: "idle" | "loading" | "ready";
 }
 ```
 
