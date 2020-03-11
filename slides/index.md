@@ -210,7 +210,7 @@ interface ItemScoreImprover extends Accessor {
 
 ---
 
-# Lets create a simple widget
+# Let's create a simple widget
 
 Simple widget view that renders the an `enabled` state of a button
 
@@ -224,7 +224,7 @@ interface SimpleWidget extends Widget {
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo: [SimpleWidget](../demos/3-simple-view/)
+# Demo: [`SimpleWidget`](../demos/3-simple-view/)
 
 Develop a simple widget
 
@@ -232,7 +232,7 @@ Develop a simple widget
 
 ---
 
-# Demo Recap: SimpleWidget
+# Demo Recap: `SimpleWidget`
 
 - Extended `esri/widgets/Widget`
 - Implemented `render()`
@@ -262,7 +262,7 @@ Develop a simple widget
 
 # Views
 
-- "SimpleWidget" example
+- `SimpleWidget` example
 - Extend `esri/widgets/Widget`
 - Rely on ViewModel
 - Focus on UI
@@ -291,22 +291,31 @@ Develop a simple widget
 
 ---
 
-# Lets create `ItemScoreImprover` Widget
+# Let's create `ItemScoreImprover` Widget
 
-[![Completed Demo](img/completed-demo.png)](../demos/completed/)
-
-`ItemScoreImprover` widget
+[<img src="img/completed-demo.png" height=500 />](../demos/completed/)
 
 ---
 
 # Demo VM Interface
 
-<pre><code class="ts" data-trim data-noescape>
-interface ItemScoreImproverViewModel extends Accessor {
-  // tbd 🚧
+```ts
+interface ItemScoreImprover extends Accessor {
+  portal: Portal;
+  itemId: string; 
+  readonly suggestions: { name: string; type: "add" | "enhance"; }[];
+  
+  title: string;
+  summary: string;
+  description: string;
+  tags: string;
+  termsOfUse: string;
+  thumbnail: string;
+
+  load(): Promise<void>;
+  save(): Promise<void>;
 }
-</code></pre>
-</section>
+```
 
 ---
 
