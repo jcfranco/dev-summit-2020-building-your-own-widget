@@ -129,7 +129,41 @@ me.watch("age", singHappyBirthday);
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo: [`ItemScoreImprover` Class](../demos/2-custom-class/)
+# Demo: Background
+
+Inspired by ArcGIS Item Page
+
+<img src="img/ago-item-page.png" height=500 />
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
+
+# Demo: Background
+
+Exploring the Item structure
+
+<img src="img/arcgis-rest-api-item.png" height=500 />
+
+[ArcGIS REST API - Item](https://developers.arcgis.com/rest/users-groups-and-items/item.htm)
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
+
+# Demo: Background
+
+Exploring the JS API `PortalItem` class
+
+<img src="img/jsapi-portal-item.png" height=500 />
+
+[ArcGIS JavaScript API - PortalItem](https://developers.arcgis.com/javascript/latest/api-reference/esri-portal-PortalItem.html)
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
+
+# Demo: [`ItemScoreImprover` Class API](../demos/2-custom-class/)
 
 ```ts
 interface ItemScoreImprover extends Accessor {
@@ -327,6 +361,16 @@ interface ItemScoreImprover extends Widget {
   itemId: string; 
 }
 ```
+
+---
+
+<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
+
+# Demo: Styling
+
+<img src="img/calcite-web.png" height=500 />
+
+[Calcite Web](http://esri.github.io/calcite-web/)
 
 ---
 
