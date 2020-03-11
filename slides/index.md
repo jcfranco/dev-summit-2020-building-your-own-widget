@@ -137,6 +137,18 @@ Inspired by ArcGIS Item Page
 
 ---
 
+# Demo: Background
+
+Requirements
+
+- Need to load an item
+- Allow editing item properties
+- Highlight the item's score
+- Provide suggestions to improve item's score
+- Save an item
+
+---
+
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
 # Demo: Background
