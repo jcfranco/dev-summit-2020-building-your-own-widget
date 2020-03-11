@@ -13,9 +13,9 @@
 
 - Set up dev environment
 - Develop
-  - Settings Class
+  - `ItemScoreImprover` Class
   - Simple Widget
-  - SettingsPanel Widget
+  - `ItemScoreImprover` Widget
 
 ---
 
@@ -104,7 +104,7 @@ const shorthand = { person };
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-4.png" data-background-size="cover" -->
 
-<!-- Matt -->
+<!-- Presenter: Matt -->
 
 # Creating a Class
 
@@ -129,11 +129,23 @@ me.watch("age", singHappyBirthday);
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Settings Class](../demos/2-custom-class/)
+# Demo: [`ItemScoreImprover` Class](../demos/2-custom-class/)
 
 ```ts
-interface Settings extends Accessor {
-  // tbd 🚧
+interface ItemScoreImprover extends Accessor {
+  portal: Portal;
+  itemId: string; 
+  readonly suggestions: { name: string; type: "add" | "enhance"; }[];
+  
+  title: string;
+  summary: string;
+  description: string;
+  tags: string;
+  termsOfUse: string;
+  thumbnail: string;
+
+  load(): Promise<void>;
+  save(): Promise<void>;
 }
 ```
 
@@ -141,9 +153,9 @@ interface Settings extends Accessor {
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo Recap: Settings Class
+# Demo Recap: `ItemScoreImprover` Class
 
-- Implemented `Settings`
+- Implemented `ItemScoreImprover`
   - Extended `esri/core/Accessor`
   - Created properties with `@property`
   - Typed constructor arguments
@@ -152,7 +164,6 @@ interface Settings extends Accessor {
 ---
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-4.png" data-background-size="cover" -->
-<!-- Presenter: Matt -->
 
 # Writing a Widget
 
@@ -232,6 +243,8 @@ Develop a simple widget
 
 ---
 
+<!-- Presenter: Franco -->
+
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-4.png" data-background-size="cover" -->
 
 # Improving Our Widget
@@ -258,7 +271,7 @@ Develop a simple widget
 
 # ViewModels
 
-- "Settings" class example
+- `ItemScoreImprover` class example
 - Extend `esri/core/Accessor`
 - Provide APIs to support View
 - Focus on business logic
@@ -278,18 +291,18 @@ Develop a simple widget
 
 ---
 
-# Lets create `Settings` Widget
+# Lets create `ItemScoreImprover` Widget
 
 [![Completed Demo](img/completed-demo.png)](../demos/completed/)
 
-`SettingsPanel` widget
+`ItemScoreImprover` widget
 
 ---
 
 # Demo VM Interface
 
 <pre><code class="ts" data-trim data-noescape>
-interface SettingsViewModel extends Accessor {
+interface ItemScoreImproverViewModel extends Accessor {
   // tbd 🚧
 }
 </code></pre>
@@ -300,8 +313,9 @@ interface SettingsViewModel extends Accessor {
 # Demo: View Interface
 
 ```ts
-interface Settings extends Widget {
-  // tbd 🚧
+interface ItemScoreImprover extends Widget {
+  portal: Portal;
+  itemId: string; 
 }
 ```
 
@@ -311,9 +325,9 @@ interface Settings extends Widget {
 
 # Demo: [Updated View](../demos/4-updated-view/)
 
-- Use `Settings` class as `SettingsViewModel`
+- Use `ItemScoreImprover` class as `ItemScoreImproverViewModel`
   - Add a state property
-- Create `Settings` view
+- Create `ItemScoreImprover` view
   - Alias VM properties
   - Create BEM classes object
   - Render sections
@@ -334,23 +348,13 @@ interface Settings extends Widget {
 
 ---
 
-<!-- Presenter: Franco -->
-
-# Going Further
-
-<!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-4.png" data-background-size="cover" -->
-
----
-
-<!-- Presenter: Matt -->
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-4.png" data-background-size="cover" -->
 
 # Final Recap
 
 - Set up dev environment
-- Wrote `Settings` class
-- Developed a `SettingsPanel` Widget
-- Went further
+- Wrote `ItemScoreImprover` class
+- Developed a `ItemScoreImprover` Widget
 
 ---
 
@@ -367,8 +371,12 @@ interface Settings extends Widget {
 
 ## You might also be interested in...
 
-- [Building Web Apps Using Your GeoJSON Data](https://developersummit2020.schedule.esri.com/schedule/172637542)
-- [ArcGIS API for JavaScript: Practical Guide for Building a 3D Web App From 2D Data](https://developersummit2020.schedule.esri.com/schedule/1715519110)
+- ArcGIS API for JavaScript: Getting Started with Web Development
+- ArcGIS API for JavaScript: 2D Visualization
+- ArcGIS API for JavaScript: Using TypeScript
+- ArcGIS API for JavaScript: Tips and Tricks for Developing and Debugging Apps
+- Building Light-Weight Map Authoring Web Apps
+- Customizing the ArcGIS API for JavaScript Widgets
 
 ---
 
