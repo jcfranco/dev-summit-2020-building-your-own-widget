@@ -36,6 +36,7 @@ tsc --init
   "compilerOptions": {
     "module": "amd",
     "noImplicitAny": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "jsx": "react",
     "jsxFactory": "tsx",
@@ -44,8 +45,12 @@ tsc --init
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["./app/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./app/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
 ```
 
