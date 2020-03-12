@@ -5,7 +5,7 @@ import OAuthInfo = require("esri/identity/OAuthInfo");
 const placeholderAppId = "<your-app-id>";
 
 const configData = {
-  appId: placeholderAppId,
+  appId: "<your-app-id>",
   portalUrl: "https://www.arcgis.com/"
 };
 

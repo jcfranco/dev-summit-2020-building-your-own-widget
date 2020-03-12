@@ -1,6 +1,6 @@
 import Portal = require("esri/portal/Portal");
 
-export interface ItemScoreImproverViewModelProperties {
+export interface ItemScoreViewModelProperties {
   portal?: Portal;
   itemId?: string;
 }

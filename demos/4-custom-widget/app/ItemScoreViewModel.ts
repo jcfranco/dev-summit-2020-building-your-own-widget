@@ -7,17 +7,17 @@ import Portal = require("esri/portal/Portal");
 import PortalItem = require("esri/portal/PortalItem");
 import request = require("esri/request");
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { ItemScoreImproverProperties, Suggestion } from "./interfaces";
+import { ItemScoreViewModelProperties, Suggestion } from "./interfaces";
 
-@subclass("esri.demo.ItemScoreImprover")
-class ItemScoreImprover extends declared(Accessor) {
+@subclass("esri.demo.ItemScoreViewModel")
+class ItemScoreViewModel extends declared(Accessor) {
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
   //
   //--------------------------------------------------------------------------
 
-  constructor(props?: ItemScoreImproverProperties) {
+  constructor(props?: ItemScoreViewModelProperties) {
     super();
   }
 
@@ -254,4 +254,4 @@ class ItemScoreImprover extends declared(Accessor) {
   }
 }
 
-export = ItemScoreImprover;
+export = ItemScoreViewModel;

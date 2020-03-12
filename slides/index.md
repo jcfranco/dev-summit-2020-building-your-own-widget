@@ -13,9 +13,9 @@
 
 - Set up dev environment
 - Develop
-  - `ItemScoreImprover` Class
+  - `ItemScore` Class
   - Simple Widget
-  - `ItemScoreImprover` Widget
+  - `ItemScore` Widget
 
 ---
 
@@ -175,10 +175,10 @@ Exploring the JS API `PortalItem` class
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo: [`ItemScoreImprover` Class API](../demos/2-custom-class/)
+# Demo: [`ItemScore` Class API](../demos/2-custom-class/)
 
 ```ts
-interface ItemScoreImprover extends Accessor {
+interface ItemScore extends Accessor {
   portal: Portal;
   itemId: string; 
   readonly suggestions: { name: string; type: "add" | "enhance"; }[];
@@ -199,9 +199,9 @@ interface ItemScoreImprover extends Accessor {
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-5.png" data-background-size="cover" -->
 
-# Demo Recap: `ItemScoreImprover` Class
+# Demo Recap: `ItemScore` Class
 
-- Implemented `ItemScoreImprover`
+- Implemented `ItemScore`
   - Extended `esri/core/Accessor`
   - Created properties with `@property`
   - Typed constructor arguments
@@ -317,7 +317,7 @@ Develop a simple widget
 
 # ViewModels
 
-- `ItemScoreImprover` class example
+- `ItemScore` class example
 - Extend `esri/core/Accessor`
 - Provide APIs to support View
 - Focus on business logic
@@ -337,7 +337,7 @@ Develop a simple widget
 
 ---
 
-# Let's create `ItemScoreImprover` Widget
+# Let's create `ItemScore` Widget
 
 [<img src="img/completed-demo.png" height=500 />](../demos/completed/)
 
@@ -346,7 +346,7 @@ Develop a simple widget
 # Demo VM Interface
 
 ```ts
-interface ItemScoreImprover extends Accessor {
+interface ItemScore extends Accessor {
   // ✨ new ✨
   state: "idle" | "loading" | "ready";
 }
@@ -357,7 +357,7 @@ interface ItemScoreImprover extends Accessor {
 # Demo: View Interface
 
 ```ts
-interface ItemScoreImprover extends Widget {
+interface ItemScore extends Widget {
   portal: Portal;
   itemId: string; 
 }
@@ -379,9 +379,9 @@ interface ItemScoreImprover extends Widget {
 
 # Demo: [Updated View](../demos/4-updated-view/)
 
-- Use `ItemScoreImprover` class as `ItemScoreImproverViewModel`
+- Use `ItemScore` class as `ItemScoreViewModel`
   - Add a state property
-- Create `ItemScoreImprover` view
+- Create `ItemScore` view
   - Alias VM properties
   - Create BEM classes object
   - Render sections
@@ -407,8 +407,8 @@ interface ItemScoreImprover extends Widget {
 # Final Recap
 
 - Set up dev environment
-- Wrote `ItemScoreImprover` class
-- Developed a `ItemScoreImprover` Widget
+- Wrote `ItemScore` class
+- Developed a `ItemScore` Widget
 
 ---
 

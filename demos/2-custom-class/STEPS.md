@@ -9,12 +9,12 @@
 import Accessor = require("esri/core/Accessor");
 import { declared, subclass } from "esri/core/accessorSupport/decorators";
 
-@subclass("esri.demo.ItemScoreImproverViewModel")
-class ItemScoreImproverViewModel extends declared(Accessor) {
+@subclass("esri.demo.ItemScoreViewModel")
+class ItemScoreViewModel extends declared(Accessor) {
 
 }
 
-export = ItemScoreImproverViewModel;
+export = ItemScoreViewModel;
 ```
 
 This is the minimum required to create a class in 4x. All we're doing here is creating a class that extends `esri/core/Accessor`, which is the base of all 4x classes.
@@ -142,7 +142,7 @@ Next, we'll define our constructor to allow passing an arguments object to initi
 //
 //--------------------------------------------------------------------------
 
-constructor(props?: ItemScoreImproverViewModelProperties) {
+constructor(props?: ItemScoreViewModelProperties) {
   super();
 }
 ```
@@ -154,7 +154,7 @@ import Accessor = require("esri/core/Accessor");
 import Portal = require("esri/portal/Portal");
 import PortalItem = require("esri/portal/PortalItem");
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { ItemScoreImproverViewModelProperties, Suggestion } from "./interfaces";
+import { ItemScoreViewModelProperties, Suggestion } from "./interfaces";
 ```
 
 We've now implemented the properties from our API design. Properties defined this way can be watched for changes and initialized by a constructor object.

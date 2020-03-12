@@ -1,11 +1,11 @@
 import "demos/config";
-import ItemScoreImprover = require("./ItemScoreImprover");
+import ItemScore = require("./ItemScore");
 
 //----------------
 //  class setup
 //----------------
 
-const improver = new ItemScoreImprover();
+const itemScore = new ItemScore();
 
 // add to window for demo
-(window as any).improver = improver;
+(window as any).itemScore = itemScore;

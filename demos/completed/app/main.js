@@ -1,11 +1,11 @@
-define(["require", "exports", "./ItemScoreImprover", "demos/config"], function (require, exports, ItemScoreImprover) {
+define(["require", "exports", "./ItemScore", "demos/config"], function (require, exports, ItemScore) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     //----------------
     //  widget setup
     //----------------
-    var improver = new ItemScoreImprover({ container: "widgetDiv" });
+    var itemScore = new ItemScore({ container: "widgetDiv" });
     // add to window for demo
-    window.improver = improver;
+    window.itemScore = itemScore;
 });
 //# sourceMappingURL=main.js.map

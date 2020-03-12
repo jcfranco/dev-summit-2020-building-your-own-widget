@@ -1,12 +1,12 @@
 import "demos/config";
-import ItemScoreImprover = require("./ItemScoreImprover");
+import ItemScore = require("./ItemScore");
 
 //----------------
 //  widget setup
 //----------------
 
-const improver = new ItemScoreImprover({ container: "widgetDiv" });
+const itemScore = new ItemScore({ container: "widgetDiv" });
 
 // add to window for demo
-(window as any).improver = improver;
+(window as any).itemScore = itemScore;
 

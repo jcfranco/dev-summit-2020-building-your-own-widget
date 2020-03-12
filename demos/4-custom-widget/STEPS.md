@@ -2,20 +2,20 @@
 
 ## Rename class
 
-We need to take our `ItemScoreImprover` class and rename it to be our `ItemScoreImproverViewModel`
+We need to take our `ItemScore` class and rename it to be our `ItemScoreViewModel`
 
 ```ts
-import { ItemScoreImproverViewModelProperties, Suggestion } from "./interfaces";
+import { ItemScoreViewModelProperties, Suggestion } from "./interfaces";
 
-@subclass("esri.demo.ItemScoreImproverViewModel")
-class ItemScoreImproverViewModel extends declared(Accessor) {
+@subclass("esri.demo.ItemScoreViewModel")
+class ItemScoreViewModel extends declared(Accessor) {
 //--------------------------------------------------------------------------
 //
 //  Lifecycle
 //
 //--------------------------------------------------------------------------
 
-constructor(props?: ItemScoreImproverViewModelProperties) {
+constructor(props?: ItemScoreViewModelProperties) {
   super();
 }
 ```
@@ -65,13 +65,13 @@ Let's add some properties to our widget
 //  itemId
 //----------------------------------
 
-@aliasOf("viewModel.itemId") itemId: ItemScoreImproverViewModel["itemId"];
+@aliasOf("viewModel.itemId") itemId: ItemScoreViewModel["itemId"];
 
 //----------------------------------
 //  portal
 //----------------------------------
 
-@aliasOf("viewModel.portal") portal: ItemScoreImproverViewModel["portal"];
+@aliasOf("viewModel.portal") portal: ItemScoreViewModel["portal"];
 
 //----------------------------------
 //  viewModel
@@ -88,7 +88,7 @@ Let's add some properties to our widget
   "viewModel.termsOfUse",
   "viewModel.title"
 ])
-viewModel: ItemScoreImproverViewModel = new ItemScoreImproverViewModel();
+viewModel: ItemScoreViewModel = new ItemScoreViewModel();
 ```
 
 ## Let's add our rendering logic and we'll walk through each one
@@ -254,11 +254,11 @@ We have lookup objects to keep track of our CSS classes (note: using BEM naming 
 
 ```ts
 const CSS = {
-  root: "item-score-improver",
-  scoreBar: "item-score-improver__score-bar",
-  scoreBarBackground: "item-score-improver__score-bar-background",
-  scoreBarFill: "item-score-improver__score-bar-fill",
-  thumbnail: "item-score-improver__thumbnail",
+  root: "item-score",
+  scoreBar: "item-score__score-bar",
+  scoreBarBackground: "item-score__score-bar-background",
+  scoreBarFill: "item-score__score-bar-fill",
+  thumbnail: "item-score__thumbnail",
 
   // common
   esriWidget: "esri-widget",

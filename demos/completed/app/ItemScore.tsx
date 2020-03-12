@@ -2,22 +2,22 @@
 /// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
 
 import Widget = require("esri/widgets/Widget");
-import ItemScoreImproverViewModel = require("./ItemScoreImproverViewModel");
+import ItemScoreViewModel = require("./ItemScoreViewModel");
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 import { renderable, tsx } from "esri/widgets/support/widget";
-import { ItemScoreImproverViewModelProperties } from "./interfaces";
+import { ItemScoreViewModelProperties } from "./interfaces";
 import WidgetProperties = __esri.WidgetProperties;
 
-interface ItemScoreImproverProperties
-  extends ItemScoreImproverViewModelProperties,
+interface ItemScoreProperties
+  extends ItemScoreViewModelProperties,
     WidgetProperties {}
 
 const CSS = {
-  root: "item-score-improver",
-  scoreBar: "item-score-improver__score-bar",
-  scoreBarBackground: "item-score-improver__score-bar-background",
-  scoreBarFill: "item-score-improver__score-bar-fill",
-  thumbnail: "item-score-improver__thumbnail",
+  root: "item-score",
+  scoreBar: "item-score__score-bar",
+  scoreBarBackground: "item-score__score-bar-background",
+  scoreBarFill: "item-score__score-bar-fill",
+  thumbnail: "item-score__thumbnail",
 
   // common
   esriWidget: "esri-widget",
@@ -75,15 +75,15 @@ const i18n = {
   }
 };
 
-@subclass("esri.demo.ItemScoreImprover")
-class ItemScoreImprover extends declared(Widget) {
+@subclass("esri.demo.ItemScore")
+class ItemScore extends declared(Widget) {
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
   //
   //--------------------------------------------------------------------------
 
-  constructor(props: ItemScoreImproverProperties) {
+  constructor(props: ItemScoreProperties) {
     super();
   }
 
@@ -121,13 +121,13 @@ class ItemScoreImprover extends declared(Widget) {
   //  itemId
   //----------------------------------
 
-  @aliasOf("viewModel.itemId") itemId: ItemScoreImproverViewModel["itemId"];
+  @aliasOf("viewModel.itemId") itemId: ItemScoreViewModel["itemId"];
 
   //----------------------------------
   //  portal
   //----------------------------------
 
-  @aliasOf("viewModel.portal") portal: ItemScoreImproverViewModel["portal"];
+  @aliasOf("viewModel.portal") portal: ItemScoreViewModel["portal"];
 
   //----------------------------------
   //  viewModel
@@ -144,7 +144,7 @@ class ItemScoreImprover extends declared(Widget) {
     "viewModel.termsOfUse",
     "viewModel.title"
   ])
-  viewModel: ItemScoreImproverViewModel = new ItemScoreImproverViewModel();
+  viewModel: ItemScoreViewModel = new ItemScoreViewModel();
 
   //--------------------------------------------------------------------------
   //
@@ -381,4 +381,4 @@ class ItemScoreImprover extends declared(Widget) {
   }
 }
 
-export = ItemScoreImprover;
+export = ItemScore;

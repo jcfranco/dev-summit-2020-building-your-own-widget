@@ -7,17 +7,17 @@ import Portal = require("esri/portal/Portal");
 import PortalItem = require("esri/portal/PortalItem");
 import request = require("esri/request");
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { ItemScoreImproverViewModelProperties, Suggestion } from "./interfaces";
+import { ItemScoreViewModelProperties, Suggestion } from "./interfaces";
 
-@subclass("esri.demo.ItemScoreImproverViewModel")
-class ItemScoreImproverViewModel extends declared(Accessor) {
+@subclass("esri.demo.ItemScoreViewModel")
+class ItemScoreViewModel extends declared(Accessor) {
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
   //
   //--------------------------------------------------------------------------
 
-  constructor(props?: ItemScoreImproverViewModelProperties) {
+  constructor(props?: ItemScoreViewModelProperties) {
     super();
   }
 
@@ -41,7 +41,10 @@ class ItemScoreImproverViewModel extends declared(Accessor) {
   //----------------------------------
 
   @property()
-  portal: Portal = Portal.getDefault();
+  portal: Portal = (() => {
+    console.log("portal");
+    return Portal.getDefault();
+  })();
 
   //----------------------------------
   //  itemId
@@ -77,6 +80,28 @@ class ItemScoreImproverViewModel extends declared(Accessor) {
     aliasOf: "item.snippet"
   })
   summary: PortalItem["snippet"];
+
+  //----------------------------------
+  //  state
+  //----------------------------------
+
+  @property({
+    dependsOn: ["item.loadStatus", "portal"],
+    readOnly: true
+  })
+  get state(): "idle" | "loading" | "ready" {
+    const { item, portal } = this;
+
+    if (portal.loadStatus === "loading") {
+      return "loading";
+    }
+
+    if (item) {
+      return item.loadStatus === "loading" ? "loading" : "ready";
+    }
+
+    return "idle";
+  }
 
   //----------------------------------
   //  suggestions
@@ -254,4 +279,4 @@ class ItemScoreImproverViewModel extends declared(Accessor) {
   }
 }
 
-export = ItemScoreImproverViewModel;
+export = ItemScoreViewModel;

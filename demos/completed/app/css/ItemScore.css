@@ -1,16 +1,16 @@
-.item-score-improver {
+.item-score {
   display: flex;
   flex-direction: column;
 }
 
-.item-score-improver__score-bar {
+.item-score__score-bar {
   display: flex;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.item-score-improver__score-bar-background {
+.item-score__score-bar-background {
   border: solid #0E5C8C;
   border-radius: 10px;
   height: 50px;
@@ -18,14 +18,14 @@
   z-index: 0;
 }
 
-.item-score-improver__score-bar-fill {
+.item-score__score-bar-fill {
   position: absolute;
   border-color: transparent;
   height: 50px;
   transition: width ease-in 250ms;
 }
 
-.item-score-improver__thumbnail {
+.item-score__thumbnail {
   height: 133px;
   width: 200px;
   display: block;

@@ -4,9 +4,9 @@
 import Accessor = require("esri/core/Accessor");
 import { declared, subclass } from "esri/core/accessorSupport/decorators";
 
-@subclass("esri.demo.ItemScoreImprover")
-class ItemScoreImprover extends declared(Accessor) {
+@subclass("esri.demo.ItemScore")
+class ItemScore extends declared(Accessor) {
 
 }
 
-export = ItemScoreImprover;
+export = ItemScore;
