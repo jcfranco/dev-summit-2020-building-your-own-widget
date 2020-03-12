@@ -434,9 +434,15 @@ interface ItemScoreImprover extends Widget {
 
 ---
 
-# 🤔 Where can I find the slides/source?
+# Questions? 🤔 
 
-👉 [bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20) 👈
+> Where can I find the slides/source?
+
+[bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20) 
+
+> Where can I submit a question? 
+
+[bit.ly/askjsapi](http://bit.ly/askjsapi)
 
 ---
 

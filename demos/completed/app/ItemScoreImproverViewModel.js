@@ -19,7 +19,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             //----------------------------------
             //  portal
             //----------------------------------
-            _this.portal = Portal.getDefault();
+            _this.portal = (function () {
+                console.log("portal");
+                return Portal.getDefault();
+            })();
             //----------------------------------
             //  suggestions
             //----------------------------------

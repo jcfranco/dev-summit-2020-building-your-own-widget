@@ -136,7 +136,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         ItemScoreImprover.prototype.renderItemLoader = function () {
             return (widget_1.tsx("div", { class: this.classes(CSS.leader1, CSS.inputGroup) },
                 widget_1.tsx("label", { class: CSS.inputGroupInput },
-                    widget_1.tsx("input", { class: CSS.inputGroupInput, "data-item-prop": "itemId", placeholder: i18n.itemIdPlaceholder, onchange: this._handleSimpleValueChange, onkeyup: this._handleInputKeyDown })),
+                    widget_1.tsx("input", { class: CSS.inputGroupInput, "data-item-prop": "itemId", placeholder: i18n.itemIdPlaceholder, onchange: this._handleSimpleValueChange, onkeyup: this._handleInputKeyDown, value: this.itemId })),
                 widget_1.tsx("span", { class: CSS.inputGroupButton },
                     widget_1.tsx("button", { class: CSS.button, onclick: this._handleItemLoad }, i18n.load))));
         };

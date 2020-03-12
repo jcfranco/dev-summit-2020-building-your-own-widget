@@ -2,7 +2,7 @@ import Portal = require("esri/portal/Portal");
 
 export interface ItemScoreImproverProperties {
   portal?: Portal;
-  itemId: string;
+  itemId?: string;
 }
 
 export interface Suggestion {

@@ -41,7 +41,10 @@ class ItemScoreImproverViewModel extends declared(Accessor) {
   //----------------------------------
 
   @property()
-  portal: Portal = Portal.getDefault();
+  portal: Portal = (() => {
+    console.log("portal");
+    return Portal.getDefault();
+  })();
 
   //----------------------------------
   //  itemId

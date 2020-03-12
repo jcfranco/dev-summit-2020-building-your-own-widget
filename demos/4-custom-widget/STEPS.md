@@ -125,6 +125,7 @@ protected renderItemLoader() {
           placeholder={i18n.itemIdPlaceholder}
           onchange={this._handleSimpleValueChange}
           onkeyup={this._handleInputKeyDown}
+          value={this.itemId}
         />
       </label>
       <span class={CSS.inputGroupButton}>

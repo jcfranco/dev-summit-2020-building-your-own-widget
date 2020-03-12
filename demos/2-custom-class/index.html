@@ -12,10 +12,16 @@
     var demoLocation = href.slice(0, href.lastIndexOf("/"));
     var dojoConfig = {
       // configure loader to create demo modules (non-CDN) from the correct location.
-      packages: [{
-        name: "demo",
-        location: demoLocation + '/app'
-      }]
+      packages: [
+        {
+          name: "demos",
+          location: `${demoLocation}/..`
+        },
+        {
+          name: "demo",
+          location: `${demoLocation}/app`
+        }
+      ]
     };
   </script>
   <script src="https://js.arcgis.com/next"></script>
