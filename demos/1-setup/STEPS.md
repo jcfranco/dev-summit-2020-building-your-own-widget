@@ -25,7 +25,7 @@ npm install --save-dev typescript @types/arcgis-js-api
 
 
 ```
-tsc --init
+npx tsc --init
 ```
 
 1.  The previous step creates a config file (`tsconfig.json`) for the TypeScript compiler with defaults and lists all possible options. For our demo, well copy over base configuration options from the [ArcGIS JS API TypeScript setup guide page](https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html#compile-typescript)
@@ -58,15 +58,15 @@ tsc --init
 
 
 ```
-tsc -w
+npx tsc -w
 ```
 
 1.  Let's update `main.ts` in the `app` directory
 
 
 ```ts
-import Map = require("esri/Map");
-import MapView = require("esri/views/MapView");
+import Map from "esri/Map";
+import MapView from "esri/views/MapView";
 
 //----------------
 //  map setup
