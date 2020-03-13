@@ -1,21 +1,8 @@
 # Writing a class
 
-1.  Let's start off by adding some boilerplate for creating a module or class.
+1.  Let's start off by looking at some boilerplate for creating a module or class.
 
-```
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
-
-import Accessor = require("esri/core/Accessor");
-import { declared, subclass } from "esri/core/accessorSupport/decorators";
-
-@subclass("esri.demo.ItemScoreViewModel")
-class ItemScoreViewModel extends declared(Accessor) {
-
-}
-
-export = ItemScoreViewModel;
-```
+See `app/ItemScore.ts`
 
 This is the minimum required to create a class in 4x. All we're doing here is creating a class that extends `esri/core/Accessor`, which is the base of all 4x classes.
 
@@ -25,12 +12,14 @@ This is the minimum required to create a class in 4x. All we're doing here is cr
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 ```
 
-Notes: 
+Notes:
 
 - We can use an internal property to expose a subset of `PortalItem` properties. `@property({ aliasOf: "item.<propName>" }` can help us do this for each aliased properties.
 - We can also use TypeScript to use the same types for our aliased properties without needing to redeclare each one.
 
-```
+Add vars
+
+```ts
 //--------------------------------------------------------------------------
 //
 //  Variables
@@ -40,6 +29,11 @@ Notes:
 @property()
 private item: PortalItem;
 
+```
+
+Add props
+
+```ts
 //--------------------------------------------------------------------------
 //
 //  Properties
@@ -133,7 +127,6 @@ title: PortalItem["title"];
 ```
 
 Next, we'll define our constructor to allow passing an arguments object to initialize our class. We can leverage TypeScript and type the constructor argument to ensure our class is created with the correct properties. We'll use an interface we prepared beforehand.
-
 
 ```tsx
 //--------------------------------------------------------------------------
