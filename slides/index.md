@@ -133,7 +133,7 @@ me.watch("age", singHappyBirthday);
 
 Inspired by ArcGIS Item Page
 
-<img src="img/ago-item-page.png" height=500 />
+<a target="_blank" href="https://jsapi.maps.arcgis.com/home/item.html?id=f5a89635bb394f7da2f9c82cdd73e459" ><img src="img/ago-item-page.png" height=300 /></a>
 
 ---
 
@@ -155,7 +155,7 @@ Requirements
 
 Exploring the Item structure
 
-<img src="img/arcgis-rest-api-item.png" height=500 />
+<a target="_blank" href="https://developers.arcgis.com/rest/users-groups-and-items/item.htm" ><img src="img/arcgis-rest-api-item.png" height=300 /></a>
 
 [ArcGIS REST API - Item](https://developers.arcgis.com/rest/users-groups-and-items/item.htm)
 
@@ -167,7 +167,7 @@ Exploring the Item structure
 
 Exploring the JS API `PortalItem` class
 
-<img src="img/jsapi-portal-item.png" height=500 />
+<a target="_blank" href="https://developers.arcgis.com/javascript/latest/api-reference/esri-portal-PortalItem.html"><img src="img/jsapi-portal-item.png" height=300 /></a>
 
 [ArcGIS JavaScript API - PortalItem](https://developers.arcgis.com/javascript/latest/api-reference/esri-portal-PortalItem.html)
 
@@ -180,9 +180,9 @@ Exploring the JS API `PortalItem` class
 ```ts
 interface ItemScore extends Accessor {
   portal: Portal;
-  itemId: string; 
-  readonly suggestions: { name: string; type: "add" | "enhance"; }[];
-  
+  itemId: string;
+  readonly suggestions: { name: string; type: "add" | "enhance" }[];
+
   title: string;
   summary: string;
   description: string;
@@ -218,9 +218,10 @@ interface ItemScore extends Accessor {
 # About Widgets
 
 - What? <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Single-purpose pieces of functionality
-  - Encapsulated UI components
-  - Cohesive (integrated, unified)
+  - Component of a UI
+  - Perform a function (controls something)
+  - Stateful
+  - Interactive
 - Why? <!-- .element: class="fragment" data-fragment-index="2" -->
   - Reusable
   - Interchangeable
@@ -359,7 +360,7 @@ interface ItemScore extends Accessor {
 ```ts
 interface ItemScore extends Widget {
   portal: Portal;
-  itemId: string; 
+  itemId: string;
 }
 ```
 
@@ -434,13 +435,13 @@ interface ItemScore extends Widget {
 
 ---
 
-# Questions? 🤔 
+# Questions? 🤔
 
 > Where can I find the slides/source?
 
-[bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20) 
+[bit.ly/buildwidgetsds20](http://bit.ly/buildwidgetsds20)
 
-> Where can I submit a question? 
+> Where can I submit a question?
 
 [bit.ly/askjsapi](http://bit.ly/askjsapi)
 
