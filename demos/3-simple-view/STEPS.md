@@ -1,53 +1,16 @@
 # Simple View Steps
 
-## Setup SimpleWidget
+## View HTML
 
-Open `SimpleWidget.tsx` and add the following basic class to the empty file.
+Open `index.html` and view the app setup.
 
-```tsx
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
+## View Main
 
-import Widget = require("esri/widgets/Widget");
+Open `main.ts` and view the widget initialization.
 
-import { renderable, tsx } from "esri/widgets/support/widget";
+## View SimpleWidget
 
-import { property, declared, subclass } from "esri/core/accessorSupport/decorators";
-
-@subclass("esri.demo.SimpleWidget")
-class SimpleWidget extends declared(Widget) {
-  //--------------------------------------------------------------------------
-  //
-  //  Lifecycle
-  //
-  //--------------------------------------------------------------------------
-
-  constructor() {
-    super();
-  }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Properties
-  //
-  //--------------------------------------------------------------------------
-  //--------------------------------------------------------------------------
-  //
-  //  Public Methods
-  //
-  //--------------------------------------------------------------------------
-
-  render() {}
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private Methods
-  //
-  //--------------------------------------------------------------------------
-}
-
-export = SimpleWidget;
-```
+Open `SimpleWidget.tsx` and notice basic widget structure.
 
 ## Modify Render method
 
@@ -57,28 +20,6 @@ Add the `render()` public method
 render() {
   return <div class="simple-widget">Hello World</div>;
 }
-```
-
-## Setup Main
-
-Open `main.ts` and setup the widget initialization.
-
-## First require the widget
-
-```ts
-import SimpleWidget = require("./SimpleWidget");
-```
-
-## Then initialize the widget
-
-```ts
-//----------------
-//  widget setup
-//----------------
-
-const widget = new SimpleWidget();
-
-view.ui.add(widget, "top-right");
 ```
 
 ## Compile and test
