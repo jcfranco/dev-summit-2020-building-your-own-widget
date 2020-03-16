@@ -23,6 +23,12 @@ constructor(props?: ItemScoreViewModelProperties) {
 ## Add state property
 
 ```ts
+//--------------------------------------------------------------------------
+//
+//  Properties
+//
+//--------------------------------------------------------------------------
+
 //----------------------------------
 //  state
 //----------------------------------
@@ -65,14 +71,14 @@ First, let's add some properties to our widget.
 //  itemId
 //----------------------------------
 
-@aliasOf("viewModel.itemId") 
+@aliasOf("viewModel.itemId")
 itemId: ItemScoreViewModel["itemId"];
 
 //----------------------------------
 //  portal
 //----------------------------------
 
-@aliasOf("viewModel.portal") 
+@aliasOf("viewModel.portal")
 portal: ItemScoreViewModel["portal"];
 
 //----------------------------------
@@ -95,10 +101,10 @@ viewModel: ItemScoreViewModel = new ItemScoreViewModel();
 
 ## Let's add our rendering for different pieces based on the design and we'll walk through each one
 
-Let's begin adding our item loader.  
+Let's begin adding our item loader.
 
 ```tsx
-//--------------------------------------------------------------------------
+  //--------------------------------------------------------------------------
   //
   //  Public Methods
   //
@@ -159,9 +165,15 @@ Let's begin adding our item loader.
 
 We have lookup objects to keep track of our CSS classes (`CSS`) and text (`i18n`). Let's import these constants from `resources.ts`.
 
-Next, let's display a progress bar while the item is loaded. We'll do that by updating our render method to display a progress bar when the item is loading or else we show nothing.  
+Next, let's display a progress bar while the item is loaded. We'll do that by updating our render method to display a progress bar when the item is loading or else we show nothing.
 
 ```ts
+  //--------------------------------------------------------------------------
+  //
+  //  Public Methods
+  //
+  //--------------------------------------------------------------------------
+
   render() {
     const { state } = this.viewModel;
 
@@ -189,7 +201,26 @@ Next, let's display a progress bar while the item is loaded. We'll do that by up
 Now we can render the item's score after the item is loaded. We can do that by rendering the score after the item is loaded.
 
 ```tsx
-protected renderScore() {
+  //--------------------------------------------------------------------------
+  //
+  //  Public Methods
+  //
+  //--------------------------------------------------------------------------
+
+  render() {
+    const { state } = this.viewModel;
+
+    return (
+      <div class={this.classes(CSS.esriWidget, CSS.root, CSS.paddingLeft1, CSS.paddingRight1)}>
+        {this.renderItemLoader()}
+        {state === "loading" ? this.renderProgressBar() :
+        state === "ready" ? this.renderScore() :
+         null}
+      </div>
+    );
+  }
+
+  protected renderScore() {
     const { score } = this.viewModel;
 
     return (
@@ -257,7 +288,26 @@ protected renderScore() {
 Now we should see the item's score illustrated by the score bar as well as the first suggestion on improving the score. Let's improve our widget by adding a way to display and edit different item properties.
 
 ```tsx
-protected renderItemForm() {
+  //--------------------------------------------------------------------------
+  //
+  //  Public Methods
+  //
+  //--------------------------------------------------------------------------
+
+  render() {
+    const { state } = this.viewModel;
+
+    return (
+      <div class={this.classes(CSS.esriWidget, CSS.root, CSS.paddingLeft1, CSS.paddingRight1)}>
+        {this.renderItemLoader()}
+        {state === "loading" ? this.renderProgressBar() :
+        state === "ready" ? [this.renderScore(), this.renderItemForm()] :
+         null}
+      </div>
+    );
+  }
+
+  protected renderItemForm() {
     const {
       _thumbnailBlobUrl,
       viewModel: { title, summary, description, tags, termsOfUse }
@@ -312,22 +362,6 @@ protected renderItemForm() {
       </div>
     );
   }
-           
-  //--------------------------------------------------------------------------
-  //
-  //  Lifecycle
-  //
-  //--------------------------------------------------------------------------
-
-  postInitialize(): void {
-    this.own(
-      this.watch("viewModel.thumbnail", (thumbnail) => this._updateThumbnailBlobUrl(thumbnail))
-    );
-  }
-
-  destroy(): void {
-    this._updateThumbnailBlobUrl(null);
-  }
 
   //--------------------------------------------------------------------------
   //
@@ -338,22 +372,6 @@ protected renderItemForm() {
   @property()
   @renderable()
   private _thumbnailBlobUrl: string;
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private Methods
-  //
-  //--------------------------------------------------------------------------
-             
-  private _updateThumbnailBlobUrl(thumbnail: Blob): void {
-    if (this._thumbnailBlobUrl) {
-      URL.revokeObjectURL(this._thumbnailBlobUrl);
-    }
-
-    if (thumbnail) {
-      this._thumbnailBlobUrl = URL.createObjectURL(thumbnail);
-    }
-  }
 
   //--------------------------------------------------------------------------
   //
@@ -377,10 +395,52 @@ protected renderItemForm() {
   };
 ```
 
-Awesome. So, we can now display different properties from our item. Each property can also be edited, but all of these changes are stored locally. We need to be able to update the item itself. Let's do that next to complete our widget.
+We have most of our properties set up to render at this point. Let's take care of the remaining one. The last one is the thumbnail, which is wired up to display a blob URL. Let's add some logic to update it based on the view model's `thumbnail` property.
 
 ```tsx
-protected renderItemForm() {
+  //--------------------------------------------------------------------------
+  //
+  //  Lifecycle
+  //
+  //--------------------------------------------------------------------------
+
+  postInitialize(): void {
+    this.own(
+      this.watch("viewModel.thumbnail", (thumbnail) => this._updateThumbnailBlobUrl(thumbnail))
+    );
+  }
+
+  destroy(): void {
+    this._updateThumbnailBlobUrl(null);
+  }
+
+  //--------------------------------------------------------------------------
+  //
+  //  Private Methods
+  //
+  //--------------------------------------------------------------------------
+
+  private _updateThumbnailBlobUrl(thumbnail: Blob): void {
+    if (this._thumbnailBlobUrl) {
+      URL.revokeObjectURL(this._thumbnailBlobUrl);
+    }
+
+    if (thumbnail) {
+      this._thumbnailBlobUrl = URL.createObjectURL(thumbnail);
+    }
+  }
+```
+
+Awesome. Our widget now renders all properties from our view model. Each property can also be edited, but all of these changes are stored locally. We need to be able to update the item itself. Let's do that next to complete our widget.
+
+```tsx
+  //--------------------------------------------------------------------------
+  //
+  //  Public Methods
+  //
+  //--------------------------------------------------------------------------
+
+  protected renderItemForm() {
     const {
             _thumbnailBlobUrl,
             viewModel: { title, summary, description, tags, termsOfUse }
@@ -389,7 +449,7 @@ protected renderItemForm() {
     return (
       <form class={this.classes(CSS.panel, CSS.leader1)}
             onsubmit={this._handleFormSubmit} key="item-details">
-        {/* omitted for brevity */}        
+        {/* omitted for brevity */}
         <button class={CSS.button} disabled={this._activeSave} onclick={this._handleItemSave}>
           {i18n.save}
         </button>
@@ -401,7 +461,7 @@ protected renderItemForm() {
   //
   //  Protected Methods
   //
-  //--------------------------------------------------------------------------  
+  //--------------------------------------------------------------------------
 
   protected _handleItemSave = (): void => {
     const save = this.viewModel.save();
