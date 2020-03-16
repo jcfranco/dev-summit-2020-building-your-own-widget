@@ -1,45 +1,41 @@
 # Writing a class
 
-1.  Let's start off by looking at some boilerplate for creating a module or class.
+## Inspect
+
+Let's start off by looking at some boilerplate for creating a module or class.
 
 See `app/ItemScore.ts`
 
 This is the minimum required to create a class in 4x. All we're doing here is creating a class that extends `esri/core/Accessor`, which is the base of all 4x classes.
-
-1.  We'll now add the properties we described earlier in our design. We'll do this with the `property` decorator.
-
-```tsx
-import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
-```
 
 Notes:
 
 - We can use an internal property to expose a subset of `PortalItem` properties. `@property({ aliasOf: "item.<propName>" }` can help us do this for each aliased properties.
 - We can also use TypeScript to use the same types for our aliased properties without needing to redeclare each one.
 
-Add vars
+## Import dependencies
 
 ```ts
-//--------------------------------------------------------------------------
-//
-//  Variables
-//
-//--------------------------------------------------------------------------
+import Portal = require("esri/portal/Portal");
+import PortalItem = require("esri/portal/PortalItem");
+import { ItemScoreProperties, Suggestion } from "./interfaces";
+import EsriError = require("esri/core/Error");
+import request = require("esri/request");
+```
 
+We've now implemented the properties from our API design. Properties defined this way can be watched for changes and initialized by a constructor object.
+
+## Add vars
+
+```ts
 @property()
 private item: PortalItem;
 
 ```
 
-Add props
+## Add props
 
 ```ts
-//--------------------------------------------------------------------------
-//
-//  Properties
-//
-//--------------------------------------------------------------------------
-
 //----------------------------------
 //  portal
 //----------------------------------
@@ -126,41 +122,23 @@ thumbnail: Blob;
 title: PortalItem["title"];
 ```
 
+## Setup Constructor
+
 Next, we'll define our constructor to allow passing an arguments object to initialize our class. We can leverage TypeScript and type the constructor argument to ensure our class is created with the correct properties. We'll use an interface we prepared beforehand.
 
-```tsx
-//--------------------------------------------------------------------------
-//
-//  Lifecycle
-//
-//--------------------------------------------------------------------------
-
-constructor(props?: ItemScoreViewModelProperties) {
+```ts
+constructor(props?: ItemScoreProperties) {
   super();
 }
 ```
 
 TypeScript will complain about references to classes and utilities we haven't imported, so let's go ahead and fix that.
 
-```tsx
-import Accessor = require("esri/core/Accessor");
-import Portal = require("esri/portal/Portal");
-import PortalItem = require("esri/portal/PortalItem");
-import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { ItemScoreViewModelProperties, Suggestion } from "./interfaces";
-```
-
-We've now implemented the properties from our API design. Properties defined this way can be watched for changes and initialized by a constructor object.
+## Setup public methods
 
 Let's bring in our public methods so we can finish implementing our public API.
 
 ```tsx
-//--------------------------------------------------------------------------
-//
-//  Public Methods
-//
-//--------------------------------------------------------------------------
-
 async save(): Promise<void> {
   const { item, thumbnail } = this;
 
@@ -203,13 +181,11 @@ async load(): Promise<void> {
 
   this._set("suggestions", this._reviewItem());
 }
+```
 
-//--------------------------------------------------------------------------
-//
-//  Private Methods
-//
-//--------------------------------------------------------------------------
+## Add private methods
 
+```tsx
 private _reviewItem(): Suggestion[] {
   const suggestions: Suggestion[] = [];
 
