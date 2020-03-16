@@ -93,11 +93,9 @@ class ItemScore extends declared(Widget) {
     return (
       <div class={this.classes(CSS.esriWidget, CSS.root, CSS.paddingLeft1, CSS.paddingRight1)}>
         {this.renderItemLoader()}
-        {state === "ready"
-          ? this.renderItemForm()
-          : state === "loading"
-          ? this.renderProgressBar()
-          : null}
+        {state === "loading" ? this.renderProgressBar() :
+         state === "ready" ? [this.renderScore(), this.renderItemForm()] :
+         null}
       </div>
     );
   }
@@ -145,7 +143,6 @@ class ItemScore extends declared(Widget) {
 
     return (
       <div key="item-details">
-        {this.renderScore()}
         <form class={this.classes(CSS.panel, CSS.leader1)} onsubmit={this._handleFormSubmit}>
           <label>
             {i18n.title}
@@ -200,7 +197,7 @@ class ItemScore extends declared(Widget) {
     const { score } = this.viewModel;
 
     return (
-      <div class={this.classes(CSS.scoreBarContainer, CSS.paddingLeaderHalf, CSS.paddingTrailer1)}>
+      <div class={this.classes(CSS.scoreBarContainer, CSS.paddingLeaderHalf, CSS.paddingTrailer1)} key="item-score">
         <label>
           <h1>{i18n.score}</h1>
           <div class={CSS.scoreBar}>
