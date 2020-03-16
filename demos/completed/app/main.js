@@ -4,7 +4,7 @@ define(["require", "exports", "./ItemScore", "demos/config"], function (require,
     //----------------
     //  widget setup
     //----------------
-    var itemScore = new ItemScore({ container: "widgetDiv" });
+    var itemScore = new ItemScore({ itemId: "", container: "widgetDiv" });
     // add to window for demo
     window.itemScore = itemScore;
 });
