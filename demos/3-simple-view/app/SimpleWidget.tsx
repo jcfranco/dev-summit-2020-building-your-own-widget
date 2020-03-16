@@ -24,6 +24,9 @@ class SimpleWidget extends declared(Widget) {
   //  Properties
   //
   //--------------------------------------------------------------------------
+
+  // put props here
+
   //--------------------------------------------------------------------------
   //
   //  Public Methods
@@ -39,6 +42,8 @@ class SimpleWidget extends declared(Widget) {
   //  Private Methods
   //
   //--------------------------------------------------------------------------
+
+  // put private methods here
 }
 
 export = SimpleWidget;
