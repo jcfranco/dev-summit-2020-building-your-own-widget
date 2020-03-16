@@ -221,18 +221,26 @@ interface ItemScore extends Accessor {
 
 ---
 
-# About Widgets
+# What are widgets?
 
-- What? <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Component of a UI
-  - Perform a function
-  - Stateful
-  - Interactive
-- Why? <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Reusable
-  - Interchangeable
-- How? <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Extend `esri/Widgets/Widget`
+- Component of UI
+- Perform a function
+- Interactive
+- Stateful
+
+---
+
+# Why use widgets?
+
+- Reusable
+- Modular
+- Help build more complex apps
+
+---
+
+# How to create a widget?
+
+- Extend `esri/Widgets/Widget`
 
 ---
 
