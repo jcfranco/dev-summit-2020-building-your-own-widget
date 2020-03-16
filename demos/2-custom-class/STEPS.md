@@ -265,3 +265,20 @@ private _reviewItem(): Suggestion[] {
 ```
 
 We have now implemented our class and we can test it in our demo page.
+
+## Test out class
+
+```js
+// should throw an error
+itemScore.load();
+```
+
+```js
+// should set itemId
+itemScore.itemId = "f5a89635bb394f7da2f9c82cdd73e459";
+```
+
+```js
+// should load() item and have all props
+itemScore.load();
+```
