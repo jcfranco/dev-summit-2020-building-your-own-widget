@@ -6,7 +6,6 @@ import { declared, subclass } from "esri/core/accessorSupport/decorators";
 import { tsx } from "esri/widgets/support/widget";
 import { ItemScoreProperties } from "./interfaces";
 
-
 @subclass("esri.demo.ItemScore")
 class ItemScore extends declared(Widget) {
   //--------------------------------------------------------------------------
