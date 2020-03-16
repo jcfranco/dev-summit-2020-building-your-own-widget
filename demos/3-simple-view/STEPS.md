@@ -1,9 +1,5 @@
 # Simple View Steps
 
-## View HTML
-
-Open `index.html` and view the app setup.
-
 ## View Main
 
 Open `main.ts` and view the widget initialization.
@@ -36,6 +32,15 @@ Lets add a property to our widget
 enabled = false;
 ```
 
+## Add CSS constant for JSX
+
+```ts
+const CSS = {
+  base: "simple-widget",
+  enabled: "simple-widget--enabled"
+};
+```
+
 ## Modify our render method
 
 Modify our render method to contain a button that toggles a class
@@ -44,27 +49,25 @@ Modify our render method to contain a button that toggles a class
 render() {
   const { enabled } = this;
 
-  const rootClasses = {
-    [CSS.enabled]: enabled
-  };
-
-  const text = enabled ? "Enabled" : "Disabled";
-
   return (
-    <button bind={this} onclick={this._toggle} class={this.classes(CSS.base, rootClasses)}>
-      {text}
+    <button
+      bind={this}
+      class={this.classes(CSS.base, enabled && CSS.enabled)}
+     >
+      {enabled ? "Enabled" : "Disabled"}
     </button>
   );
 }
 ```
 
-## Add CSS constant for JSX
+## Compile and test
 
-```ts
-const CSS = {
-  base: "simple-widget",
-  enabled: "simple-widget--enabled"
-};
+You should see a `Disabled` button.
+
+## Add onclick
+
+```tsx
+onclick={this._toggle}
 ```
 
 ## Add private method to handle event
