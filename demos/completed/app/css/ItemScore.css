@@ -10,6 +10,14 @@
   overflow: hidden;
 }
 
+.item-score__score-bar-container {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+  border-bottom: 1px solid #ddd;
+}
+
 .item-score__score-bar-background {
   border: solid #0E5C8C;
   border-radius: 10px;

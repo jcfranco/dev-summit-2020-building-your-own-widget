@@ -41,10 +41,7 @@ class ItemScoreViewModel extends declared(Accessor) {
   //----------------------------------
 
   @property()
-  portal: Portal = (() => {
-    console.log("portal");
-    return Portal.getDefault();
-  })();
+  portal: Portal = Portal.getDefault();
 
   //----------------------------------
   //  itemId
@@ -162,10 +159,13 @@ class ItemScoreViewModel extends declared(Accessor) {
       );
     }
 
-    const data = item.toJSON();
-    this.item = await item.update({ data });
+    // we clone to apply all updates before replacing our internal item
+    const updatedItem = item.clone();
+    const data = updatedItem.toJSON();
+    await updatedItem.update({ data });
+    await updatedItem.updateThumbnail({ filename: "item-thumbnail", thumbnail });
 
-    await item.updateThumbnail({ filename: "item-thumbnail", thumbnail });
+    this.item = updatedItem;
 
     this._set("suggestions", this._reviewItem());
   }
@@ -177,13 +177,13 @@ class ItemScoreViewModel extends declared(Accessor) {
       throw new EsriError("item-score-reviewer::missing-item-id", "cannot load item data without item ID");
     }
 
-    const item = new PortalItem({ id: itemId, portal });
-    this.item = item;
+    const updatedItem = new PortalItem({ id: itemId, portal });
+    this.item = updatedItem;
 
-    await item.load();
+    await updatedItem.load();
 
-    if (item.thumbnailUrl) {
-      const thumbnail = await request(item.thumbnailUrl, {
+    if (updatedItem.thumbnailUrl) {
+      const thumbnail = await request(updatedItem.thumbnailUrl, {
         responseType: "blob"
       }).then(({ data }) => data);
 
