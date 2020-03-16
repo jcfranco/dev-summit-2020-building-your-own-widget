@@ -2,15 +2,10 @@
 /// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
 
 import Widget = require("esri/widgets/Widget");
-import ItemScoreViewModel = require("./ItemScoreViewModel");
-import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { renderable, tsx } from "esri/widgets/support/widget";
-import { ItemScoreViewModelProperties } from "./interfaces";
-import WidgetProperties = __esri.WidgetProperties;
+import { declared, subclass } from "esri/core/accessorSupport/decorators";
+import { tsx } from "esri/widgets/support/widget";
+import { ItemScoreProperties } from "./interfaces";
 
-interface ItemScoreProperties
-  extends ItemScoreViewModelProperties,
-    WidgetProperties {}
 
 @subclass("esri.demo.ItemScore")
 class ItemScore extends declared(Widget) {
@@ -23,6 +18,7 @@ class ItemScore extends declared(Widget) {
   constructor(props: ItemScoreProperties) {
     super();
   }
+
 }
 
 export = ItemScore;

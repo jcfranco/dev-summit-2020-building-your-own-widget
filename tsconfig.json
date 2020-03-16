@@ -12,6 +12,6 @@
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["./demos", "typings/"],
+  "include": ["./demos", "typings"],
   "exclude": ["node_modules", "**/*-final.tsx", "**/*-final.ts"]
 }
