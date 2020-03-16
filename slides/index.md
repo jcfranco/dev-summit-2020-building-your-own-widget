@@ -34,7 +34,7 @@ JS API + TypeScript
 
 ---
 
-# TypeScript
+# [TypeScript](http://www.typescriptlang.org/)
 
 ---
 
@@ -46,10 +46,16 @@ interface Person {
   age: number;
 }
 
-const person: Person = { name: "Franco", age: 33 };
+const person: Person = { name: "Franco", age: 35 };
 
-person.age = "24"; // TS2322: Type '"24"' is not assignable to type 'number'
-person.height = 5.11; // TS2339: property 'height' does not exist on type 'Person'
+person.age = "24"; // Type '"24"' is not assignable to type 'number'
+person.height = 5.11; // Property 'height' does not exist on type 'Person'
+
+function greet(person: Person): void {
+  console.log("Hello " + person.name + "!");
+}
+
+greet(person); // Hello Franco!
 ```
 
 ---
@@ -68,7 +74,7 @@ const logName = (person) => console.log(person.name);
 const greeting = `Hello, my name is ${person.name} and I am ${person.age} years old.`;
 
 // destructuring
-const { name, age } = person;
+const [{ name, age }] = people;
 
 // property shorthand
 const shorthand = { person };
@@ -259,7 +265,7 @@ interface ItemScore extends Accessor {
 
 # Let's create a simple widget
 
-Simple widget view that renders the an `enabled` state of a button
+Simple widget view that renders the `enabled` state of a button
 
 ```ts
 interface SimpleWidget extends Widget {
@@ -300,8 +306,8 @@ Develop a simple widget
 
 # Architecture
 
-- Separation of concerns
-  - Views + ViewModels
+- Views + ViewModels
+  - Separation of concerns
   - UI replacement
   - Easier integration
 
@@ -378,7 +384,7 @@ interface ItemScore extends Widget {
 
 <!-- .slide: data-background="../node_modules/esri-reveal.js-templates/img/2020/devsummit/bg-3.png" data-background-size="cover" -->
 
-# Demo: [Updated View](../demos/4-updated-view/)
+# Demo: [Updated View](../demos/4-custom-widget/)
 
 - Use `ItemScore` class as `ItemScoreViewModel`
   - Add a state property
@@ -387,8 +393,6 @@ interface ItemScore extends Widget {
   - Create BEM classes object
   - Render sections
 
-[Updated View](../demos/4-updated-view/) | [ViewModel Test Page](../demos/4-updated-view/vm-test.html)
-
 <!--- mention BEM -->
 
 ---
@@ -396,7 +400,7 @@ interface ItemScore extends Widget {
 # Demo Recap: Update View
 
 - Paired View and ViewModel
-- Rendered property from ViewModel
+- Rendered properties from ViewModel
 - Wired up interactivity
 - Learned to apply styles
 - Dynamically rendered UI based on a property value change
